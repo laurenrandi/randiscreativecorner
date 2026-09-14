@@ -59,15 +59,6 @@ export default function TestWorld() {
 
   /*
     ==============================
-    TOUCH DEVICE
-    ==============================
-  */
-
-  const [isTouchDevice, setIsTouchDevice] =
-    useState(false);
-
-  /*
-    ==============================
     WALKING AUDIO
     ==============================
   */
@@ -93,39 +84,6 @@ export default function TestWorld() {
       audio.pause();
       audio.currentTime = 0;
       walkingAudio.current = null;
-    };
-  }, []);
-
-  /*
-    ==============================
-    DETECT TOUCH DEVICES
-    ==============================
-  */
-
-  useEffect(() => {
-    const checkTouchDevice = () => {
-      const hasTouch =
-        navigator.maxTouchPoints > 0 ||
-        "ontouchstart" in window ||
-        window.matchMedia(
-          "(pointer: coarse)"
-        ).matches;
-
-      setIsTouchDevice(hasTouch);
-    };
-
-    checkTouchDevice();
-
-    window.addEventListener(
-      "resize",
-      checkTouchDevice
-    );
-
-    return () => {
-      window.removeEventListener(
-        "resize",
-        checkTouchDevice
-      );
     };
   }, []);
 
@@ -676,293 +634,433 @@ export default function TestWorld() {
           TOUCH CONTROLS
           ===================================== */}
 
-      {isTouchDevice && (
-        <>
-          {/* =================================
-              UP
-              ================================= */}
+      <div
+        style={{
+          position: "fixed",
 
-          <button
-            aria-label="Move up"
+          right:
+            "max(16px, env(safe-area-inset-right))",
 
-            onPointerDown={(event) => {
-              event.preventDefault();
+          bottom:
+            "max(16px, env(safe-area-inset-bottom))",
 
-              event.currentTarget.setPointerCapture(
-                event.pointerId
-              );
+          width:
+            "clamp(160px, 34vw, 220px)",
 
-              touchStart(
-                "arrowup"
-              );
-            }}
+          height:
+            "clamp(160px, 34vw, 220px)",
 
-            onPointerUp={(event) => {
-              event.preventDefault();
+          zIndex: 9999,
 
-              touchEnd(
-                "arrowup"
-              );
-            }}
+          touchAction: "none",
 
-            onPointerCancel={() => {
-              touchEnd(
-                "arrowup"
-              );
-            }}
+          userSelect: "none",
 
-            style={{
-              position: "fixed",
+          WebkitUserSelect:
+            "none",
+        }}
+      >
 
-              top: "20px",
-              left: "50%",
+        {/* =================================
+            UP
+            ================================= */}
 
-              transform:
-                "translateX(-50%)",
+        <button
+          aria-label="Move up"
 
-              width: "70px",
-              height: "70px",
+          onPointerDown={(event) => {
+            event.preventDefault();
 
-              border: "none",
-              borderRadius: "18px",
+            event.currentTarget.setPointerCapture(
+              event.pointerId
+            );
 
-              background:
-                "rgba(255, 255, 255, 0.75)",
+            touchStart(
+              "arrowup"
+            );
+          }}
 
-              fontSize: "32px",
+          onPointerUp={(event) => {
+            event.preventDefault();
 
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+            touchEnd(
+              "arrowup"
+            );
+          }}
 
-              cursor: "pointer",
+          onPointerCancel={() => {
+            touchEnd(
+              "arrowup"
+            );
+          }}
 
-              userSelect: "none",
-              WebkitUserSelect:
-                "none",
+          onPointerLeave={() => {
+            touchEnd(
+              "arrowup"
+            );
+          }}
 
-              touchAction: "none",
+          onLostPointerCapture={() => {
+            touchEnd(
+              "arrowup"
+            );
+          }}
 
-              zIndex: 9999,
-            }}
-          >
-            ▲
-          </button>
+          style={{
+            position: "absolute",
 
-          {/* =================================
-              DOWN
-              ================================= */}
+            left: "50%",
+            top: "0",
 
-          <button
-            aria-label="Move down"
+            transform:
+              "translateX(-50%)",
 
-            onPointerDown={(event) => {
-              event.preventDefault();
+            width:
+              "clamp(52px, 12vw, 70px)",
 
-              event.currentTarget.setPointerCapture(
-                event.pointerId
-              );
+            height:
+              "clamp(52px, 12vw, 70px)",
 
-              touchStart(
-                "arrowdown"
-              );
-            }}
+            border: "none",
 
-            onPointerUp={(event) => {
-              event.preventDefault();
+            borderRadius:
+              "14px",
 
-              touchEnd(
-                "arrowdown"
-              );
-            }}
+            background:
+              "rgba(255, 255, 255, 0.8)",
 
-            onPointerCancel={() => {
-              touchEnd(
-                "arrowdown"
-              );
-            }}
+            fontSize:
+              "clamp(22px, 5vw, 32px)",
 
-            style={{
-              position: "fixed",
+            display: "flex",
 
-              bottom: "20px",
-              left: "50%",
+            alignItems:
+              "center",
 
-              transform:
-                "translateX(-50%)",
+            justifyContent:
+              "center",
 
-              width: "70px",
-              height: "70px",
+            cursor: "pointer",
 
-              border: "none",
-              borderRadius: "18px",
+            padding: 0,
 
-              background:
-                "rgba(255, 255, 255, 0.75)",
+            touchAction:
+              "none",
 
-              fontSize: "32px",
+            userSelect:
+              "none",
 
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+            WebkitUserSelect:
+              "none",
 
-              cursor: "pointer",
+            WebkitTapHighlightColor:
+              "transparent",
+          }}
+        >
+          ▲
+        </button>
 
-              userSelect: "none",
-              WebkitUserSelect:
-                "none",
 
-              touchAction: "none",
+        {/* =================================
+            LEFT
+            ================================= */}
 
-              zIndex: 9999,
-            }}
-          >
-            ▼
-          </button>
+        <button
+          aria-label="Move left"
 
-          {/* =================================
-              LEFT
-              ================================= */}
+          onPointerDown={(event) => {
+            event.preventDefault();
 
-          <button
-            aria-label="Move left"
+            event.currentTarget.setPointerCapture(
+              event.pointerId
+            );
 
-            onPointerDown={(event) => {
-              event.preventDefault();
+            touchStart(
+              "arrowleft"
+            );
+          }}
 
-              event.currentTarget.setPointerCapture(
-                event.pointerId
-              );
+          onPointerUp={(event) => {
+            event.preventDefault();
 
-              touchStart(
-                "arrowleft"
-              );
-            }}
+            touchEnd(
+              "arrowleft"
+            );
+          }}
 
-            onPointerUp={(event) => {
-              event.preventDefault();
+          onPointerCancel={() => {
+            touchEnd(
+              "arrowleft"
+            );
+          }}
 
-              touchEnd(
-                "arrowleft"
-              );
-            }}
+          onPointerLeave={() => {
+            touchEnd(
+              "arrowleft"
+            );
+          }}
 
-            onPointerCancel={() => {
-              touchEnd(
-                "arrowleft"
-              );
-            }}
+          onLostPointerCapture={() => {
+            touchEnd(
+              "arrowleft"
+            );
+          }}
 
-            style={{
-              position: "fixed",
+          style={{
+            position: "absolute",
 
-              left: "20px",
-              top: "50%",
+            left: "0",
+            top: "50%",
 
-              transform:
-                "translateY(-50%)",
+            transform:
+              "translateY(-50%)",
 
-              width: "70px",
-              height: "70px",
+            width:
+              "clamp(52px, 12vw, 70px)",
 
-              border: "none",
-              borderRadius: "18px",
+            height:
+              "clamp(52px, 12vw, 70px)",
 
-              background:
-                "rgba(255, 255, 255, 0.75)",
+            border: "none",
 
-              fontSize: "32px",
+            borderRadius:
+              "14px",
 
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+            background:
+              "rgba(255, 255, 255, 0.8)",
 
-              cursor: "pointer",
+            fontSize:
+              "clamp(22px, 5vw, 32px)",
 
-              userSelect: "none",
-              WebkitUserSelect:
-                "none",
+            display: "flex",
 
-              touchAction: "none",
+            alignItems:
+              "center",
 
-              zIndex: 9999,
-            }}
-          >
-            ◀
-          </button>
+            justifyContent:
+              "center",
 
-          {/* =================================
-              RIGHT
-              ================================= */}
+            cursor: "pointer",
 
-          <button
-            aria-label="Move right"
+            padding: 0,
 
-            onPointerDown={(event) => {
-              event.preventDefault();
+            touchAction:
+              "none",
 
-              event.currentTarget.setPointerCapture(
-                event.pointerId
-              );
+            userSelect:
+              "none",
 
-              touchStart(
-                "arrowright"
-              );
-            }}
+            WebkitUserSelect:
+              "none",
 
-            onPointerUp={(event) => {
-              event.preventDefault();
+            WebkitTapHighlightColor:
+              "transparent",
+          }}
+        >
+          ◀
+        </button>
 
-              touchEnd(
-                "arrowright"
-              );
-            }}
 
-            onPointerCancel={() => {
-              touchEnd(
-                "arrowright"
-              );
-            }}
+        {/* =================================
+            RIGHT
+            ================================= */}
 
-            style={{
-              position: "fixed",
+        <button
+          aria-label="Move right"
 
-              right: "20px",
-              top: "50%",
+          onPointerDown={(event) => {
+            event.preventDefault();
 
-              transform:
-                "translateY(-50%)",
+            event.currentTarget.setPointerCapture(
+              event.pointerId
+            );
 
-              width: "70px",
-              height: "70px",
+            touchStart(
+              "arrowright"
+            );
+          }}
 
-              border: "none",
-              borderRadius: "18px",
+          onPointerUp={(event) => {
+            event.preventDefault();
 
-              background:
-                "rgba(255, 255, 255, 0.75)",
+            touchEnd(
+              "arrowright"
+            );
+          }}
 
-              fontSize: "32px",
+          onPointerCancel={() => {
+            touchEnd(
+              "arrowright"
+            );
+          }}
 
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+          onPointerLeave={() => {
+            touchEnd(
+              "arrowright"
+            );
+          }}
 
-              cursor: "pointer",
+          onLostPointerCapture={() => {
+            touchEnd(
+              "arrowright"
+            );
+          }}
 
-              userSelect: "none",
-              WebkitUserSelect:
-                "none",
+          style={{
+            position: "absolute",
 
-              touchAction: "none",
+            right: "0",
+            top: "50%",
 
-              zIndex: 9999,
-            }}
-          >
-            ▶
-          </button>
-        </>
-      )}
+            transform:
+              "translateY(-50%)",
+
+            width:
+              "clamp(52px, 12vw, 70px)",
+
+            height:
+              "clamp(52px, 12vw, 70px)",
+
+            border: "none",
+
+            borderRadius:
+              "14px",
+
+            background:
+              "rgba(255, 255, 255, 0.8)",
+
+            fontSize:
+              "clamp(22px, 5vw, 32px)",
+
+            display: "flex",
+
+            alignItems:
+              "center",
+
+            justifyContent:
+              "center",
+
+            cursor: "pointer",
+
+            padding: 0,
+
+            touchAction:
+              "none",
+
+            userSelect:
+              "none",
+
+            WebkitUserSelect:
+              "none",
+
+            WebkitTapHighlightColor:
+              "transparent",
+          }}
+        >
+          ▶
+        </button>
+
+
+        {/* =================================
+            DOWN
+            ================================= */}
+
+        <button
+          aria-label="Move down"
+
+          onPointerDown={(event) => {
+            event.preventDefault();
+
+            event.currentTarget.setPointerCapture(
+              event.pointerId
+            );
+
+            touchStart(
+              "arrowdown"
+            );
+          }}
+
+          onPointerUp={(event) => {
+            event.preventDefault();
+
+            touchEnd(
+              "arrowdown"
+            );
+          }}
+
+          onPointerCancel={() => {
+            touchEnd(
+              "arrowdown"
+            );
+          }}
+
+          onPointerLeave={() => {
+            touchEnd(
+              "arrowdown"
+            );
+          }}
+
+          onLostPointerCapture={() => {
+            touchEnd(
+              "arrowdown"
+            );
+          }}
+
+          style={{
+            position: "absolute",
+
+            left: "50%",
+            bottom: "0",
+
+            transform:
+              "translateX(-50%)",
+
+            width:
+              "clamp(52px, 12vw, 70px)",
+
+            height:
+              "clamp(52px, 12vw, 70px)",
+
+            border: "none",
+
+            borderRadius:
+              "14px",
+
+            background:
+              "rgba(255, 255, 255, 0.8)",
+
+            fontSize:
+              "clamp(22px, 5vw, 32px)",
+
+            display: "flex",
+
+            alignItems:
+              "center",
+
+            justifyContent:
+              "center",
+
+            cursor: "pointer",
+
+            padding: 0,
+
+            touchAction:
+              "none",
+
+            userSelect:
+              "none",
+
+            WebkitUserSelect:
+              "none",
+
+            WebkitTapHighlightColor:
+              "transparent",
+          }}
+        >
+          ▼
+        </button>
+
+      </div>
 
     </main>
   );
