@@ -16,8 +16,7 @@ export default function FilmStudioPage() {
         overflow: "hidden",
       }}
     >
-      
-
+       
       {/* Room */}
       <FilmStudioRoom />
   

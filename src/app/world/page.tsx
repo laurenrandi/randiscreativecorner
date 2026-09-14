@@ -51,7 +51,51 @@ export default function World() {
       ========================== */}
 
       <div className="world-content">
-
+         <div
+        style={{
+          position: "absolute",
+          left: "-10%",
+          top: "72%",
+          width: "40%",
+          height: "70%",
+          transform: "translateY(-50%)",
+          zIndex: -10,
+        }}
+      >
+        <Image
+          src="/assets/welcome-page/homescreenblink.gif"
+          alt="blinking meee"
+          fill
+          priority
+          unoptimized
+          style={{
+            objectFit: "contain",
+          }}
+        />
+        
+      </div>
+           <div
+        style={{
+          position: "absolute",
+          right: "-10%",
+          top: "38%",
+          width: "45%",
+          height: "75%",
+          transform: "translateY(-50%)",
+          zIndex: -10,
+        }}
+      >
+        <Image
+          src="/assets/welcome-page/homescreenpose.png"
+          alt="blinking meee"
+          fill
+          priority
+          unoptimized
+          style={{
+            objectFit: "contain",
+          }}
+        />
+</div>
       <BackButton href="/"/>
       {/* Choose Your Destination Title */}
      <div className="world-title">

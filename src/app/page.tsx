@@ -15,26 +15,7 @@ export default function Home() {
                 BACKGROUND ANIMATIONS
             ========================== */}
       
-            {/* Moving Clouds */}
-            <div className="cloud-container">
-              <Image
-                src="/assets/location-selector/cloud.png"
-                alt=""
-                width={1920}
-                height={300}
-                className="cloud cloud-one"
-                priority
-              />
-      
-              <Image
-                src="/assets/location-selector/cloud.png"
-                alt=""
-                width={1920}
-                height={300}
-                className="cloud cloud-two"
-                priority
-              />
-            </div>
+            
       
       
             {/* Left Leaves */}
@@ -65,7 +46,52 @@ export default function Home() {
           objectFit: "cover",
         }}
       />
-
+      <div
+  style={{
+    position: "absolute",
+    left: "0%",
+    top: "72%",
+    width: "40%",
+    height: "70%",
+    transform: "translateY(-50%)",
+    zIndex: -10,
+  }}
+>
+  <Image
+    src="/assets/welcome-page/homescreenblink.gif"
+    alt="blinking meee"
+    fill
+    priority
+    unoptimized
+    style={{
+      objectFit: "contain",
+    }}
+  />
+  
+</div>
+     <div
+  style={{
+    position: "absolute",
+    right: "-5%",
+    top: "38%",
+    width: "45%",
+    height: "75%",
+    transform: "translateY(-50%)",
+    zIndex: -10,
+  }}
+>
+  <Image
+    src="/assets/welcome-page/homescreenpose.png"
+    alt="blinking meee"
+    fill
+    priority
+    unoptimized
+    style={{
+      objectFit: "contain",
+    }}
+  />
+  
+</div>
       {/* Enter Button Overlay */}
       <Link
   href="/world"

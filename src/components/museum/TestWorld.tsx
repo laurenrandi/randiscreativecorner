@@ -507,7 +507,7 @@ export default function TestWorld() {
             ===================================== */}
 
         <Image
-          src="/assets/museum/museumbackground2.png"
+          src="/assets/museum/whitetest.png"
           alt=""
           width={WORLD_WIDTH}
           height={WORLD_HEIGHT}
