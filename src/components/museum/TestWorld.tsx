@@ -59,6 +59,15 @@ export default function TestWorld() {
 
   /*
     ==============================
+    TOUCH DEVICE
+    ==============================
+  */
+
+  const [isTouchDevice, setIsTouchDevice] =
+    useState(false);
+
+  /*
+    ==============================
     WALKING AUDIO
     ==============================
   */
@@ -69,6 +78,7 @@ export default function TestWorld() {
   /*
     Create walking sound
   */
+
   useEffect(() => {
     const audio = new Audio(
       "/assets/museum/walking.mp3"
@@ -83,6 +93,39 @@ export default function TestWorld() {
       audio.pause();
       audio.currentTime = 0;
       walkingAudio.current = null;
+    };
+  }, []);
+
+  /*
+    ==============================
+    DETECT TOUCH DEVICES
+    ==============================
+  */
+
+  useEffect(() => {
+    const checkTouchDevice = () => {
+      const hasTouch =
+        navigator.maxTouchPoints > 0 ||
+        "ontouchstart" in window ||
+        window.matchMedia(
+          "(pointer: coarse)"
+        ).matches;
+
+      setIsTouchDevice(hasTouch);
+    };
+
+    checkTouchDevice();
+
+    window.addEventListener(
+      "resize",
+      checkTouchDevice
+    );
+
+    return () => {
+      window.removeEventListener(
+        "resize",
+        checkTouchDevice
+      );
     };
   }, []);
 
@@ -119,6 +162,24 @@ export default function TestWorld() {
 
     loadDrawings();
   }, []);
+
+  /*
+    ==============================
+    TOUCH BUTTON FUNCTIONS
+    ==============================
+  */
+
+  const touchStart = (
+    direction: string
+  ) => {
+    keys.current.add(direction);
+  };
+
+  const touchEnd = (
+    direction: string
+  ) => {
+    keys.current.delete(direction);
+  };
 
   /*
     ==============================
@@ -245,6 +306,7 @@ export default function TestWorld() {
         /*
           Start walking sound
         */
+
         if (
           walkingAudio.current &&
           walkingAudio.current.paused
@@ -257,6 +319,7 @@ export default function TestWorld() {
         /*
           Move player
         */
+
         setPosition(
           (current) => {
             let x = current.x;
@@ -290,6 +353,7 @@ export default function TestWorld() {
               Keep character inside
               the world.
             */
+
             x = Math.max(
               CHARACTER_WIDTH / 2,
               Math.min(
@@ -344,6 +408,7 @@ export default function TestWorld() {
         /*
           Stop walking sound
         */
+
         if (
           walkingAudio.current &&
           !walkingAudio.current.paused
@@ -354,6 +419,7 @@ export default function TestWorld() {
         /*
           Return to standing frame
         */
+
         setFrame(0);
       }
 
@@ -397,6 +463,7 @@ export default function TestWorld() {
         Make sure walking sound
         stops when leaving page.
       */
+
       if (walkingAudio.current) {
         walkingAudio.current.pause();
       }
@@ -438,6 +505,7 @@ export default function TestWorld() {
         overflow: "hidden",
         position: "relative",
         background: "#ddd",
+        touchAction: "none",
       }}
     >
 
@@ -459,12 +527,14 @@ export default function TestWorld() {
             Place world origin at
             the center of the screen.
           */
+
           left: "50%",
           top: "50%",
 
           /*
             Camera follows player.
           */
+
           transform: `
             translate(
               -${position.x}px,
@@ -601,6 +671,298 @@ export default function TestWorld() {
             "none",
         }}
       />
+
+      {/* =====================================
+          TOUCH CONTROLS
+          ===================================== */}
+
+      {isTouchDevice && (
+        <>
+          {/* =================================
+              UP
+              ================================= */}
+
+          <button
+            aria-label="Move up"
+
+            onPointerDown={(event) => {
+              event.preventDefault();
+
+              event.currentTarget.setPointerCapture(
+                event.pointerId
+              );
+
+              touchStart(
+                "arrowup"
+              );
+            }}
+
+            onPointerUp={(event) => {
+              event.preventDefault();
+
+              touchEnd(
+                "arrowup"
+              );
+            }}
+
+            onPointerCancel={() => {
+              touchEnd(
+                "arrowup"
+              );
+            }}
+
+            style={{
+              position: "fixed",
+
+              top: "20px",
+              left: "50%",
+
+              transform:
+                "translateX(-50%)",
+
+              width: "70px",
+              height: "70px",
+
+              border: "none",
+              borderRadius: "18px",
+
+              background:
+                "rgba(255, 255, 255, 0.75)",
+
+              fontSize: "32px",
+
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+
+              cursor: "pointer",
+
+              userSelect: "none",
+              WebkitUserSelect:
+                "none",
+
+              touchAction: "none",
+
+              zIndex: 9999,
+            }}
+          >
+            ▲
+          </button>
+
+          {/* =================================
+              DOWN
+              ================================= */}
+
+          <button
+            aria-label="Move down"
+
+            onPointerDown={(event) => {
+              event.preventDefault();
+
+              event.currentTarget.setPointerCapture(
+                event.pointerId
+              );
+
+              touchStart(
+                "arrowdown"
+              );
+            }}
+
+            onPointerUp={(event) => {
+              event.preventDefault();
+
+              touchEnd(
+                "arrowdown"
+              );
+            }}
+
+            onPointerCancel={() => {
+              touchEnd(
+                "arrowdown"
+              );
+            }}
+
+            style={{
+              position: "fixed",
+
+              bottom: "20px",
+              left: "50%",
+
+              transform:
+                "translateX(-50%)",
+
+              width: "70px",
+              height: "70px",
+
+              border: "none",
+              borderRadius: "18px",
+
+              background:
+                "rgba(255, 255, 255, 0.75)",
+
+              fontSize: "32px",
+
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+
+              cursor: "pointer",
+
+              userSelect: "none",
+              WebkitUserSelect:
+                "none",
+
+              touchAction: "none",
+
+              zIndex: 9999,
+            }}
+          >
+            ▼
+          </button>
+
+          {/* =================================
+              LEFT
+              ================================= */}
+
+          <button
+            aria-label="Move left"
+
+            onPointerDown={(event) => {
+              event.preventDefault();
+
+              event.currentTarget.setPointerCapture(
+                event.pointerId
+              );
+
+              touchStart(
+                "arrowleft"
+              );
+            }}
+
+            onPointerUp={(event) => {
+              event.preventDefault();
+
+              touchEnd(
+                "arrowleft"
+              );
+            }}
+
+            onPointerCancel={() => {
+              touchEnd(
+                "arrowleft"
+              );
+            }}
+
+            style={{
+              position: "fixed",
+
+              left: "20px",
+              top: "50%",
+
+              transform:
+                "translateY(-50%)",
+
+              width: "70px",
+              height: "70px",
+
+              border: "none",
+              borderRadius: "18px",
+
+              background:
+                "rgba(255, 255, 255, 0.75)",
+
+              fontSize: "32px",
+
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+
+              cursor: "pointer",
+
+              userSelect: "none",
+              WebkitUserSelect:
+                "none",
+
+              touchAction: "none",
+
+              zIndex: 9999,
+            }}
+          >
+            ◀
+          </button>
+
+          {/* =================================
+              RIGHT
+              ================================= */}
+
+          <button
+            aria-label="Move right"
+
+            onPointerDown={(event) => {
+              event.preventDefault();
+
+              event.currentTarget.setPointerCapture(
+                event.pointerId
+              );
+
+              touchStart(
+                "arrowright"
+              );
+            }}
+
+            onPointerUp={(event) => {
+              event.preventDefault();
+
+              touchEnd(
+                "arrowright"
+              );
+            }}
+
+            onPointerCancel={() => {
+              touchEnd(
+                "arrowright"
+              );
+            }}
+
+            style={{
+              position: "fixed",
+
+              right: "20px",
+              top: "50%",
+
+              transform:
+                "translateY(-50%)",
+
+              width: "70px",
+              height: "70px",
+
+              border: "none",
+              borderRadius: "18px",
+
+              background:
+                "rgba(255, 255, 255, 0.75)",
+
+              fontSize: "32px",
+
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+
+              cursor: "pointer",
+
+              userSelect: "none",
+              WebkitUserSelect:
+                "none",
+
+              touchAction: "none",
+
+              zIndex: 9999,
+            }}
+          >
+            ▶
+          </button>
+        </>
+      )}
 
     </main>
   );
