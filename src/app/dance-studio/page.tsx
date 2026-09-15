@@ -1,17 +1,14 @@
-import DanceStudio from "@/components/dance-studio/DanceStudio";
+import Entrance from "@/components/dance-studio/Entrance";
 
-export default function DanceStudioPage() {
+export default function Page() {
   return (
-    <main
+    <div
       style={{
         width: "100vw",
         height: "100vh",
-        position: "relative",
-        overflow: "hidden",
-        background: "black",
       }}
     >
-      <DanceStudio />
-    </main>
+      <Entrance />
+    </div>
   );
 }

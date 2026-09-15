@@ -46,7 +46,7 @@ export default function Home() {
           objectFit: "cover",
         }}
       />
-      <div
+      {/* <div
   style={{
     position: "absolute",
     left: "0%",
@@ -67,9 +67,9 @@ export default function Home() {
       objectFit: "contain",
     }}
   />
-  
-</div>
-     <div
+   */}
+
+      {/*
   style={{
     position: "absolute",
     right: "-5%",
@@ -89,9 +89,9 @@ export default function Home() {
     style={{
       objectFit: "contain",
     }}
-  />
+  /> */}
   
-</div>
+
       {/* Enter Button Overlay */}
       <Link
   href="/world"

@@ -14,8 +14,7 @@ export default function MusicPlayer() {
   const isMuseum =
     pathname === "/museum";
 
-  const isDanceStudio =
-    pathname === "/dance-studio";
+  const isDanceStudio = pathname.startsWith("/dance-studio");
 
   useEffect(() => {
     if (!audioRef.current) return;
