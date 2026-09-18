@@ -4,10 +4,10 @@ import Image from "next/image";
 import { useState } from "react";
 
 const views = [
-  "/assets/dance-studio/boomboxwalllll.png",
-  "/assets/dance-studio/wall1.png",
-  "/assets/dance-studio/exit.png",
-  "/assets/dance-studio/wall2.png",
+  "/assets/dance-studio/danceview3.png",
+  "/assets/dance-studio/arcadeview.png",
+  "/assets/dance-studio/exitview1.png",
+  "/assets/dance-studio/movieview.png",
 ];
 
 export default function DanceStudio() {
@@ -53,54 +53,186 @@ export default function DanceStudio() {
             objectFit: "contain",
           }}
         />
-
-        {/* BOOMBOX GIF */}
-        {currentView === 0 && (
-          <div
-            style={{
-              position: "absolute",
-              width: "92%",
-              height: "92%",
-              left: "3%",
-              top: "0%",
-              zIndex: 2,
-            }}
-          >
-            <Image
-              src="/assets/dance-studio/boombox1.gif"
-              alt="Boombox"
-              fill
-              priority
-              style={{
-                objectFit: "contain",
-              }}
-            />
-          </div>
-        )}
-        {/* dancedancce GIF */}
+        {/* exit sign */}
+        {currentView === 2 && (
+  <>
+     <div
+      style={{
+        position: "absolute",
+        width: "45%",
+        height: "45%",
+        left: "48.5%",
+        top: "31%",
+        zIndex: 2,
+      }}
+    >
+      <Image
+        src="/assets/dance-studio/glowexit.png"
+        alt="Boombox"
+        fill
+        priority
+        className="exit-blink"
+        style={{
+          objectFit: "contain",
+        }}
+      />
+    </div>
+    </>)}
+        {/* DANCE REV GIF */}
         {currentView === 1 && (
-          <div
-            style={{
-              position: "absolute",
-              width: "45%",
-              height: "45%",
-              left: "28%",
-              bottom: "15%",
-              zIndex: 2,
-            }}
-          >
-            <Image
-              src="/assets/dance-studio/dancedance.png"
-              alt="Boombox"
-              fill
-              priority
-              style={{
-                objectFit: "contain",
-              }}
-            />
-          </div>
-        )}
-      </div>
+  <>
+     <div
+      style={{
+        position: "absolute",
+        width: "40%",
+        height: "40%",
+        left: "40%",
+        top: "0%",
+        zIndex: 2,
+      }}
+    >
+      <Image
+        src="/assets/dance-studio/revolution.gif"
+        alt="Boombox"
+        fill
+        priority
+        style={{
+          objectFit: "contain",
+        }}
+      />
+    </div>
+    </>)}
+    {/* sevani water gif */}
+        {currentView === 3 && (
+  <>
+     <div
+      style={{
+        position: "absolute",
+        width: "20%",
+        height: "20%",
+        left: "40%",
+        top: "31%",
+        zIndex: 2,
+      }}
+    >
+      <Image
+        src="/assets/dance-studio/moosewater.gif"
+        alt="Boombox"
+        fill
+        priority
+        style={{
+          objectFit: "contain",
+        }}
+      />
+    </div>
+    </>)}
+    {/* arcade */}
+        {currentView === 1 && (
+  <>
+     <div
+      style={{
+        position: "absolute",
+        width: "15%",
+        height: "15%",
+        left: "23%",
+        top: "47%",
+        zIndex: 2,
+      }}
+    >
+      <Image
+        src="/assets/dance-studio/arcade.png"
+        alt="Boombox"
+        fill
+        priority
+        className="arcade-blink"
+        style={{
+          objectFit: "contain",
+        }}
+      />
+    </div>
+    </>)}
+    {/* revolution game */}
+        {currentView === 1 && (
+  <>
+     <div
+      style={{
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        left: "0%",
+        top: "0%",
+        zIndex: 2,
+      }}
+    >
+      <Image
+        src="/assets/dance-studio/revmachine.png"
+        alt="Boombox"
+        fill
+        priority
+        className="revolution-blink"
+        style={{
+          objectFit: "contain",
+        }}
+      />
+    </div>
+    </>)}
+
+{/* BOOMBOX + DANCE VIDEO */}
+{currentView === 0 && (
+  <>
+    {/* BOOMBOX GIF */}
+    <div
+      style={{
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        left: "0%",
+        top: "0%",
+        zIndex: 2,
+      }}
+    >
+      <Image
+        src="/assets/dance-studio/angledboombox.gif"
+        alt="Boombox"
+        fill
+        priority
+        style={{
+          objectFit: "contain",
+        }}
+      />
+    </div>
+
+    {/* DANCE VIDEO */}
+    <div
+      style={{
+        position: "absolute",
+        width: "99%",
+        height: "99%",
+        left: "16.8%",
+        top: "31.2%",
+        zIndex: 3,
+      }}
+    >
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        style={{
+          width: "35%",
+          height: "35%",
+          objectFit: "contain",
+        }}
+      >
+        <source
+          src="/assets/dance-studio/dancetest2.mp4"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+  </>
+)} </div>
 
       {/* LEFT ARROW */}
       <button
@@ -115,6 +247,7 @@ export default function DanceStudio() {
           fontSize: "40px",
           cursor: "pointer",
           zIndex: 10,
+          color: "pink"
         }}
       >
         ←
@@ -133,6 +266,7 @@ export default function DanceStudio() {
           fontSize: "40px",
           cursor: "pointer",
           zIndex: 10,
+          color: "pink"
         }}
       >
         →

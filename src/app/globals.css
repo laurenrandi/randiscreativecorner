@@ -298,3 +298,39 @@ body {
   object-fit: contain;
   display: block;
 }
+@keyframes arcadeBlink {
+  0%,
+  35%,
+  100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.35) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  }
+}
+
+@keyframes revolutionBlink {
+  0%,
+  35%,
+  100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.35) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  }
+}
+
+.arcade-blink {
+  animation: arcadeBlink 3s ease-in-out infinite;
+}
+
+.revolution-blink {
+  animation: revolutionBlink 3s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
+
+.exit-blink {
+  animation: arcadeBlink 1.9s ease-in-out infinite;
+}

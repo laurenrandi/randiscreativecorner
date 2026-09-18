@@ -5,10 +5,8 @@ import Link from "next/link";
 import { useState } from "react";
 
 const photos = [
-  "/assets/dance-studio/closeddoor.png",
-  "/assets/dance-studio/opendoor.png",
-  "/assets/dance-studio/tunnel.png",
-  "/assets/dance-studio/thevault.png",
+  "/assets/dance-studio/entrance.png",
+  "/assets/dance-studio/stairway.png",
 ];
 
 export default function Entrance() {
