@@ -12,11 +12,11 @@ type Drawing = {
   y: number;
 };
 
-const WORLD_WIDTH = 3000;
-const WORLD_HEIGHT = 2000;
+const WORLD_WIDTH = 4000;
+const WORLD_HEIGHT = 5000;
 
-const CHARACTER_WIDTH = 100;
-const CHARACTER_HEIGHT = 170;
+const CHARACTER_WIDTH = 200;
+const CHARACTER_HEIGHT = 340;
 
 export default function TestWorld() {
   /*
@@ -507,7 +507,7 @@ export default function TestWorld() {
             ===================================== */}
 
         <Image
-          src="/assets/museum/whitetest.png"
+          src="/assets/museum/layout/museumlayout7.png"
           alt=""
           width={WORLD_WIDTH}
           height={WORLD_HEIGHT}
@@ -598,7 +598,7 @@ export default function TestWorld() {
             "absolute",
 
           left: "50%",
-          top: "50%",
+          top: "68%",
 
           width:
             `${CHARACTER_WIDTH}px`,
@@ -613,11 +613,11 @@ export default function TestWorld() {
             "url('/assets/museum/mycharacter1.png')",
 
           backgroundSize:
-            "400px 680px",
+            "800px 1360px",
 
           backgroundPosition: `
-            -${frame * 100}px
-            -${row * 170}px
+            -${frame * 200}px
+            -${row * 340}px
           `,
 
           backgroundRepeat:
