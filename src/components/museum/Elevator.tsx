@@ -466,7 +466,52 @@ const [floorInput, setFloorInput] = useState("");
       floor
     );
   };
+useEffect(() => {
+  if (!showPanel || isMoving) {
+    return;
+  }
 
+  const handleNumberKey = (
+    event: KeyboardEvent
+  ) => {
+    if (
+      event.key >= "1" &&
+      event.key <= "9"
+    ) {
+      event.preventDefault();
+
+      handleFloorClick(
+        Number(event.key)
+      );
+
+      return;
+    }
+
+    if (event.key === "0") {
+      event.preventDefault();
+
+      handleFloorClick(10);
+
+      return;
+    }
+  };
+
+  window.addEventListener(
+    "keydown",
+    handleNumberKey
+  );
+
+  return () => {
+    window.removeEventListener(
+      "keydown",
+      handleNumberKey
+    );
+  };
+}, [
+  showPanel,
+  isMoving,
+  floorPositions.length,
+]);
   return (
     <>
       {/* =================================

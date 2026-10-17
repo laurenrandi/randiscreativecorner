@@ -513,6 +513,15 @@ export default function TestWorld() {
           return;
         }
       }
+      if (key === "arrowdown" && selectedArtwork) {
+  event.preventDefault();
+
+  setSelectedArtwork(null);
+
+  keys.current.delete("arrowdown");
+
+  return;
+}
 
       if (
         key === "w" ||
@@ -748,7 +757,7 @@ export default function TestWorld() {
         walkingAudio.current.pause();
       }
     };
-  }, [position, drawings]);
+  }, [position, drawings, selectedArtwork]);
 
   /*
     =================================
@@ -1337,48 +1346,7 @@ export default function TestWorld() {
           >
             {/* CLOSE BUTTON */}
 
-            <button
-              onClick={() =>
-                setSelectedArtwork(
-                  null
-                )
-              }
-              style={{
-                position:
-                  "absolute",
-
-                right:
-                  "15px",
-
-                top:
-                  "15px",
-
-                width:
-                  "45px",
-
-                height:
-                  "45px",
-
-                border:
-                  "none",
-
-                borderRadius:
-                  "50%",
-
-                background:
-                  "#eeeeee",
-
-                fontSize:
-                  "24px",
-
-                cursor:
-                  "pointer",
-
-                zIndex: 2,
-              }}
-            >
-              ×
-            </button>
+         
 
             {/* ARTWORK IMAGE */}
 

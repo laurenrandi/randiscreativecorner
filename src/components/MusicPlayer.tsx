@@ -43,7 +43,7 @@ export default function MusicPlayer() {
         "/assets/music/westsideantics.mp3";
     } else if (isMuseum) {
       audio.src =
-        "/assets/music/treetopaper.mp3";
+        "/assets/music/wherethisflowerblooms.mp3";
     } else if (isDanceStudio) {
       audio.src =
         "/assets/music/fancyfootwork.mp3";
