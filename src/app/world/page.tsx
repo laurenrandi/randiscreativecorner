@@ -92,7 +92,7 @@ export default function World() {
         }}
       >
         <Image
-          src="/assets/welcome-page/homescreenpose.png"
+          src="/assets/welcome-page/pose2.png"
           alt="blinking meee"
           fill
           priority

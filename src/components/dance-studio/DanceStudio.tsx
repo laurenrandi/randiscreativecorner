@@ -203,7 +203,7 @@ export default function DanceStudio() {
     </div>
 
     {/* DANCE VIDEO */}
-    <div
+    {/* <div
       style={{
         position: "absolute",
         width: "99%",
@@ -230,7 +230,7 @@ export default function DanceStudio() {
           type="video/mp4"
         />
       </video>
-    </div>
+    </div> */}
   </>
 )} </div>
 
